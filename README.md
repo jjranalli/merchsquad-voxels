@@ -1,3 +1,3 @@
-# Purchasable contract template
+# Merch Squad - Voxels NFT wearable contract
 
-Template for contracts compliant with SlicerPurchasable extension
+Voxels NFT wearable contract compliant with SlicerPurchasable extension
