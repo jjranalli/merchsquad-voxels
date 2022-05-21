@@ -229,10 +229,6 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.MerchSquadVoxels__factory>;
     getContractFactory(
-      name: "MSVoxels",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.MSVoxels__factory>;
-    getContractFactory(
       name: "JuiceboxProject",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.JuiceboxProject__factory>;
@@ -771,11 +767,6 @@ declare module "hardhat/types/runtime" {
       address: string,
       signer?: ethers.Signer
     ): Promise<Contracts.MerchSquadVoxels>;
-    getContractAt(
-      name: "MSVoxels",
-      address: string,
-      signer?: ethers.Signer
-    ): Promise<Contracts.MSVoxels>;
     getContractAt(
       name: "JuiceboxProject",
       address: string,

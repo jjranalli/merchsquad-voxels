@@ -4,7 +4,9 @@ import addresses from "../addresses.json"
 // Set these before proceeding
 const env = "mainnet"
 const slicerId = 2 // The ID of the slicer that will be able to interact with this contract
-const voxelAddress = "0xa58b5224e2FD94020cb2837231B2B0E4247301A6" // Cryptovoxel address
+
+// const env = "testnet"
+// const slicerId = 31 // The ID of the slicer that will be able to interact with this contract
 
 async function main() {
   console.log("deploying")
@@ -12,8 +14,7 @@ async function main() {
   const CONTRACT = await ethers.getContractFactory("MerchSquadVoxels")
   const contract = await CONTRACT.deploy(
     addresses[env]["ProductsModule"],
-    slicerId,
-    voxelAddress
+    slicerId
   )
   await contract.deployed()
 

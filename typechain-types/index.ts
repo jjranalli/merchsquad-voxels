@@ -55,7 +55,6 @@ export type { SlicerPurchasablePayable } from "./SlicerPurchasablePayable";
 export type { ISlicerPurchasable } from "./ISlicerPurchasable";
 export type { ISlicerPurchasablePayable } from "./ISlicerPurchasablePayable";
 export type { MerchSquadVoxels } from "./MerchSquadVoxels";
-export type { MSVoxels } from "./MSVoxels";
 export type { JuiceboxProject } from "./JuiceboxProject";
 export type { Operatable } from "./Operatable";
 export type { TerminalUtility } from "./TerminalUtility";
@@ -178,7 +177,6 @@ export { SlicerPurchasablePayable__factory } from "./factories/SlicerPurchasable
 export { ISlicerPurchasable__factory } from "./factories/ISlicerPurchasable__factory";
 export { ISlicerPurchasablePayable__factory } from "./factories/ISlicerPurchasablePayable__factory";
 export { MerchSquadVoxels__factory } from "./factories/MerchSquadVoxels__factory";
-export { MSVoxels__factory } from "./factories/MSVoxels__factory";
 export { JuiceboxProject__factory } from "./factories/JuiceboxProject__factory";
 export { Operatable__factory } from "./factories/Operatable__factory";
 export { TerminalUtility__factory } from "./factories/TerminalUtility__factory";

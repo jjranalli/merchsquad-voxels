@@ -27,7 +27,7 @@ export interface MerchSquadVoxelsInterface extends utils.Interface {
     "onProductPurchase(uint256,uint256,address,uint256,bytes,bytes)": FunctionFragment;
     "owner()": FunctionFragment;
     "renounceOwnership()": FunctionFragment;
-    "setTokenIdToProduct(uint256,uint256)": FunctionFragment;
+    "setTokenIdToProduct(uint256,address,uint256[])": FunctionFragment;
     "supportsInterface(bytes4)": FunctionFragment;
     "transferOwnership(address)": FunctionFragment;
   };
@@ -69,7 +69,7 @@ export interface MerchSquadVoxelsInterface extends utils.Interface {
   ): string;
   encodeFunctionData(
     functionFragment: "setTokenIdToProduct",
-    values: [BigNumberish, BigNumberish]
+    values: [BigNumberish, string, BigNumberish[]]
   ): string;
   encodeFunctionData(
     functionFragment: "supportsInterface",
@@ -203,7 +203,8 @@ export interface MerchSquadVoxels extends BaseContract {
 
     setTokenIdToProduct(
       productId: BigNumberish,
-      tokenId: BigNumberish,
+      erc1155: string,
+      tokenIds: BigNumberish[],
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
@@ -264,7 +265,8 @@ export interface MerchSquadVoxels extends BaseContract {
 
   setTokenIdToProduct(
     productId: BigNumberish,
-    tokenId: BigNumberish,
+    erc1155: string,
+    tokenIds: BigNumberish[],
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
@@ -323,7 +325,8 @@ export interface MerchSquadVoxels extends BaseContract {
 
     setTokenIdToProduct(
       productId: BigNumberish,
-      tokenId: BigNumberish,
+      erc1155: string,
+      tokenIds: BigNumberish[],
       overrides?: CallOverrides
     ): Promise<void>;
 
@@ -396,7 +399,8 @@ export interface MerchSquadVoxels extends BaseContract {
 
     setTokenIdToProduct(
       productId: BigNumberish,
-      tokenId: BigNumberish,
+      erc1155: string,
+      tokenIds: BigNumberish[],
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
@@ -458,7 +462,8 @@ export interface MerchSquadVoxels extends BaseContract {
 
     setTokenIdToProduct(
       productId: BigNumberish,
-      tokenId: BigNumberish,
+      erc1155: string,
+      tokenIds: BigNumberish[],
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 

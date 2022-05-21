@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "@openzeppelin/contracts/interfaces/IERC1155.sol";
+import "./structs/ProductToken.sol";
 
 import "./extensions/Purchasable/SlicerPurchasable.sol";
 import "@openzeppelin/contracts/token/ERC1155/utils/ERC1155Receiver.sol";
@@ -12,20 +12,14 @@ contract MerchSquadVoxels is SlicerPurchasable, ERC1155Receiver, Ownable {
 
     /// ============ Storage ============
 
-    IERC1155 private immutable _erc1155;
     // Mapping from Product ID to erc1155 tokenId
-    mapping(uint256 => uint256) private _productTokens;
+    mapping(uint256 => ProductToken) private _productTokens;
 
     /// ========== Constructor ===========
 
-    constructor(
-        address productsModuleAddress_,
-        uint256 slicerId_,
-        address erc1155Address_
-    ) SlicerPurchasable(productsModuleAddress_, slicerId_) {
-        _erc1155 = IERC1155(erc1155Address_);
-        _erc1155.setApprovalForAll(productsModuleAddress_, true);
-    }
+    constructor(address productsModuleAddress_, uint256 slicerId_)
+        SlicerPurchasable(productsModuleAddress_, slicerId_)
+    {}
 
     /// ============ Functions ============
 
@@ -72,14 +66,29 @@ contract MerchSquadVoxels is SlicerPurchasable, ERC1155Receiver, Ownable {
         // ) revert NotAllowed();
 
         // Add product purchase logic here
-        _erc1155.safeTransferFrom(address(this), account, _productTokens[productId], quantity, "");
+        ProductToken memory p = _productTokens[productId];
+
+        uint256[] memory amounts = new uint256[](p.tokenIds.length);
+
+        for (uint256 i; i < p.tokenIds.length; ) {
+            amounts[i] = quantity;
+            unchecked {
+                ++i;
+            }
+        }
+
+        p.contractAddress.safeBatchTransferFrom(address(this), account, p.tokenIds, amounts, "");
     }
 
     /**
      * @notice Sets a `productId` to execute the transfer of a certain `tokenId`
      */
-    function setTokenIdToProduct(uint256 productId, uint256 tokenId) external onlyOwner {
-        _productTokens[productId] = tokenId;
+    function setTokenIdToProduct(
+        uint256 productId,
+        IERC1155 erc1155,
+        uint256[] calldata tokenIds
+    ) external onlyOwner {
+        _productTokens[productId] = ProductToken(erc1155, tokenIds);
     }
 
     /**
@@ -90,11 +99,8 @@ contract MerchSquadVoxels is SlicerPurchasable, ERC1155Receiver, Ownable {
         address,
         uint256,
         uint256,
-        bytes memory
+        bytes calldata
     ) public virtual override returns (bytes4) {
-        // If token transferred is token of `_erc1155` contract
-        if (msg.sender != address(_erc1155)) revert Invalid();
-
         return this.onERC1155Received.selector;
     }
 
@@ -104,12 +110,10 @@ contract MerchSquadVoxels is SlicerPurchasable, ERC1155Receiver, Ownable {
     function onERC1155BatchReceived(
         address,
         address,
-        uint256[] memory,
-        uint256[] memory,
-        bytes memory
+        uint256[] calldata,
+        uint256[] calldata,
+        bytes calldata
     ) public virtual override returns (bytes4) {
-        if (msg.sender != address(_erc1155)) revert Invalid();
-
         return this.onERC1155BatchReceived.selector;
     }
 }
