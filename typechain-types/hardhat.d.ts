@@ -209,6 +209,14 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.IUniswapV3PoolState__factory>;
     getContractFactory(
+      name: "Allowlisted",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.Allowlisted__factory>;
+    getContractFactory(
+      name: "Gated",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.Gated__factory>;
+    getContractFactory(
       name: "SlicerPurchasable",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.SlicerPurchasable__factory>;
@@ -228,6 +236,14 @@ declare module "hardhat/types/runtime" {
       name: "MerchSquadVoxels",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.MerchSquadVoxels__factory>;
+    getContractFactory(
+      name: "MerchSquadVoxelsAL",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.MerchSquadVoxelsAL__factory>;
+    getContractFactory(
+      name: "MerchSquadVoxelsGate",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.MerchSquadVoxelsGate__factory>;
     getContractFactory(
       name: "JuiceboxProject",
       signerOrOptions?: ethers.Signer | FactoryOptions
@@ -743,6 +759,16 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.IUniswapV3PoolState>;
     getContractAt(
+      name: "Allowlisted",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.Allowlisted>;
+    getContractAt(
+      name: "Gated",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.Gated>;
+    getContractAt(
       name: "SlicerPurchasable",
       address: string,
       signer?: ethers.Signer
@@ -767,6 +793,16 @@ declare module "hardhat/types/runtime" {
       address: string,
       signer?: ethers.Signer
     ): Promise<Contracts.MerchSquadVoxels>;
+    getContractAt(
+      name: "MerchSquadVoxelsAL",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.MerchSquadVoxelsAL>;
+    getContractAt(
+      name: "MerchSquadVoxelsGate",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.MerchSquadVoxelsGate>;
     getContractAt(
       name: "JuiceboxProject",
       address: string,

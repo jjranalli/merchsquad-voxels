@@ -26,7 +26,7 @@ module.exports = {
       accounts: {
         mnemonic: process.env.MNEMONIC,
       },
-      gasPrice: 16000000000,
+      gasPrice: 25000000000,
     },
   },
   solidity: {

@@ -9,16 +9,27 @@ const slicerId = 2 // The ID of the slicer that will be able to interact with th
 // const slicerId = 31 // The ID of the slicer that will be able to interact with this contract
 
 async function main() {
-  console.log("deploying")
+  // console.log("deploying AL")
 
-  const CONTRACT = await ethers.getContractFactory("MerchSquadVoxels")
-  const contract = await CONTRACT.deploy(
+  // const CONTRACT1 = await ethers.getContractFactory("MerchSquadVoxelsAL")
+  // const contract1 = await CONTRACT1.deploy(
+  //   addresses[env]["ProductsModule"],
+  //   slicerId
+  // )
+  // await contract1.deployed()
+
+  // console.log("deploying completed successfully! Address: " + contract1.address)
+
+  console.log("deploying Gated")
+
+  const CONTRACT2 = await ethers.getContractFactory("MerchSquadVoxelsGate")
+  const contract2 = await CONTRACT2.deploy(
     addresses[env]["ProductsModule"],
     slicerId
   )
-  await contract.deployed()
+  await contract2.deployed()
 
-  console.log("deploying completed successfully! Address: " + contract.address)
+  console.log("deploying completed successfully! Address: " + contract2.address)
 }
 
 main()
